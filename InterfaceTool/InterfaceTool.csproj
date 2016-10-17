@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{72C9A075-6CF7-4D49-8912-D210F0777380}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InterfaceTool</RootNamespace>
+    <AssemblyName>InterfaceTool</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\AppsettingConfig.cs" />
+    <Compile Include="Common\BaseController.cs" />
+    <Compile Include="Common\CommonMethod.cs" />
+    <Compile Include="Common\CommonModel.cs" />
+    <Compile Include="Common\DESEncrypt.cs" />
+    <Compile Include="Common\HttpUtil.cs" />
+    <Compile Include="Common\ScriptsLoad.cs" />
+    <Compile Include="Common\StylesLoad.cs" />
+    <Compile Include="Controllers\InterfaceTestController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MethodController.cs" />
+    <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Global.asax" />
+    <Content Include="readmeimg\pic1.png" />
+    <Content Include="readmeimg\pic2.png" />
+    <Content Include="readmeimg\pic3.png" />
+    <Content Include="readmeimg\pic4.png" />
+    <Content Include="Resources\Images\bg.jpg" />
+    <Content Include="Resources\Images\btn.png" />
+    <Content Include="Resources\Images\logo.png" />
+    <Content Include="Resources\Images\logologin.png" />
+    <Content Include="Resources\interfacedata\menu.txt" />
+    <Content Include="Resources\Scripts\Common\bootstrap-multiselect\bootstrap-multiselect-collapsible-groups.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap-multiselect\bootstrap-multiselect.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap-multiselect\bootstrap-multiselect.min.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap\bootstrap-tags.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap\bootstrap-tags.min.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap\bootstrap.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap\bootstrap.min.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap\multiselect.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap\multiselect.min.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\css\bootstrap-theme.css" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\css\bootstrap-theme.min.css" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\css\bootstrap.css" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\css\bootstrap.min.css" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\fonts\NewFolder1\glyphicons-halflings-regular.svg" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\js\bootstrap.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\js\bootstrap.min.js" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\js\npm.js" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\bootgrid.js" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\bootgrid.min.js" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\jquery.bootgrid.css" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\jquery.bootgrid.fa.js" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\jquery.bootgrid.fa.min.js" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\jquery.bootgrid.js" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\jquery.bootgrid.min.css" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\jquery.bootgrid.min.js" />
+    <Content Include="Resources\Scripts\Common\Jquery.SerializeForms\SerializeForms.js" />
+    <Content Include="Resources\Scripts\Common\Jquery.SerializeForms\SerializeForms.min.js" />
+    <Content Include="Resources\Scripts\Common\Jquery.tmpl\jquery.tmpl.js" />
+    <Content Include="Resources\Scripts\Common\Jquery.tmpl\jquery.tmpl.min.js" />
+    <Content Include="Resources\Scripts\Common\Jquery.tmpl\jquery.tmplPlus.js" />
+    <Content Include="Resources\Scripts\Common\Jquery.tmpl\jquery.tmplPlus.min.js" />
+    <Content Include="Resources\Scripts\Common\jquery.validate\jquery.validate.js" />
+    <Content Include="Resources\Scripts\Common\jquery.validate\jquery.validate.min.js" />
+    <Content Include="Resources\Scripts\Common\Jquery\v1.11.1\jquery.min.js" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\extend\layer.ext.js" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\layer.js" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\layer.min.js" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\skin\default\icon-ext.png" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\skin\default\icon.png" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\skin\default\loading-0.gif" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\skin\default\loading-1.gif" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\skin\default\loading-2.gif" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\skin\layer.css" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\skin\layer.ext.css" />
+    <Content Include="Resources\Scripts\Navigation\app.js" />
+    <Content Include="Resources\Scripts\Navigation\app.min.js" />
+    <Content Include="Resources\Scripts\Navigation\layout.js" />
+    <Content Include="Resources\Scripts\Navigation\layout.min.js" />
+    <Content Include="Resources\Styles\Navigation\components.min.css" />
+    <Content Include="Resources\Styles\Navigation\font-awesome\css\font-awesome.css" />
+    <Content Include="Resources\Styles\Navigation\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Resources\Styles\Navigation\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Resources\Styles\Navigation\layout\css\custom.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\custom.min.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\layout.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\layout.min.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\blue.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\blue.min.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\darkblue.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\darkblue.min.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\default.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\default.min.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\grey.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\grey.min.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\light.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\light.min.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\light2.css" />
+    <Content Include="Resources\Styles\Navigation\layout\css\themes\light2.min.css" />
+    <Content Include="Resources\Styles\Navigation\layout\img\ajax-loading.gif" />
+    <Content Include="Resources\Styles\Navigation\layout\img\ajax-modal-loading.gif" />
+    <Content Include="Resources\Styles\Navigation\layout\img\arrow-down.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar1.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar10.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar11.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar1_small.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar2.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar3.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar3_small.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar4.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar5.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar6.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar7.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar8.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\avatar9.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\hor-menu-red-arrow.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\icon-color-close.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\icon-color.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\icon-img-down.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\icon-img-up.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\inbox-nav-arrow-blue.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\loading-spinner-blue.gif" />
+    <Content Include="Resources\Styles\Navigation\layout\img\loading-spinner-default.gif" />
+    <Content Include="Resources\Styles\Navigation\layout\img\loading-spinner-grey.gif" />
+    <Content Include="Resources\Styles\Navigation\layout\img\loading.gif" />
+    <Content Include="Resources\Styles\Navigation\layout\img\logo-big-white.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\logo-big.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\logo-invert.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\logo.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\menu-toggler.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\photo1.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\photo2.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\photo3.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\remove-icon-small.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\search_icon_light.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar-menu-arrow-reverse.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar-menu-arrow-right.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar-menu-arrow.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_arrow_icon_light.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_arrow_icon_light_rtl.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_inline_toggler_icon_blue.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_inline_toggler_icon_darkblue.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_inline_toggler_icon_default.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_inline_toggler_icon_grey.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_inline_toggler_icon_light.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_inline_toggler_icon_light2.jpg" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_toggler_icon_blue.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_toggler_icon_darkblue.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_toggler_icon_default.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_toggler_icon_grey.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_toggler_icon_light.png" />
+    <Content Include="Resources\Styles\Navigation\layout\img\sidebar_toggler_icon_light2.png" />
+    <Content Include="Resources\Styles\Navigation\layout\scripts\demo.js" />
+    <Content Include="Resources\Styles\Navigation\layout\scripts\demo.min.js" />
+    <Content Include="Resources\Styles\Navigation\layout\scripts\layout.js" />
+    <Content Include="Resources\Styles\Navigation\layout\scripts\layout.min.js" />
+    <Content Include="Resources\Styles\Navigation\simple-line-icons\fonts\Simple-Line-Icons.dev.svg" />
+    <Content Include="Resources\Styles\Navigation\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Resources\Styles\Navigation\simple-line-icons\icons-lte-ie7.js" />
+    <Content Include="Resources\Styles\Navigation\simple-line-icons\License.txt" />
+    <Content Include="Resources\Styles\Navigation\simple-line-icons\Readme.txt" />
+    <Content Include="Resources\Styles\Navigation\simple-line-icons\simple-line-icons.css" />
+    <Content Include="Resources\Styles\Navigation\simple-line-icons\simple-line-icons.min.css" />
+    <Content Include="Resources\Styles\Public\bootstrap-multiselect\bootstrap-multiselect.css" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\bootstrap-tags.css" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\bootstrap-tags.min.css" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\bootstrap.css" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\multiselect.css" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\multiselect.min.css" />
+    <Content Include="Resources\Styles\Public\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Resources\Styles\Public\common.css" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Resources\xmlconfig\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Login\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InterfaceTest\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InterfaceTest\UploadInterfaceXml.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Scripts\Common\bootstrap-multiselect\bootstrap-multiselect.min.js.map" />
+    <Content Include="Resources\Scripts\Common\bootstrap\bootstrap-tags.min.js.gzip" />
+    <Content Include="Resources\Scripts\Common\bootstrap\bootstrap-tags.min.js.map" />
+    <Content Include="Resources\Scripts\Common\bootstrap\multiselect.min.js.gzip" />
+    <Content Include="Resources\Scripts\Common\bootstrap\multiselect.min.js.map" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\css\bootstrap-theme.css.map" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\css\bootstrap.css.map" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\fonts\NewFolder1\glyphicons-halflings-regular.eot" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\fonts\NewFolder1\glyphicons-halflings-regular.ttf" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\fonts\NewFolder1\glyphicons-halflings-regular.woff" />
+    <Content Include="Resources\Scripts\Common\bootstrap\v3.3.4\fonts\NewFolder1\glyphicons-halflings-regular.woff2" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\bootgrid.min.js.map" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\jquery.bootgrid.fa.min.js.map" />
+    <Content Include="Resources\Scripts\Common\jquery.bootgrid-1.2.0\jquery.bootgrid.min.js.map" />
+    <Content Include="Resources\Scripts\Common\Jquery.SerializeForms\SerializeForms.min.js.gzip" />
+    <Content Include="Resources\Scripts\Common\Jquery.SerializeForms\SerializeForms.min.js.map" />
+    <Content Include="Resources\Scripts\Common\Jquery.tmpl\jquery.tmpl.min.js.gzip" />
+    <Content Include="Resources\Scripts\Common\Jquery.tmpl\jquery.tmpl.min.js.map" />
+    <Content Include="Resources\Scripts\Common\jquery.validate\jquery.validate.min.js.map" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\layer.min.js.gzip" />
+    <Content Include="Resources\Scripts\Common\layer\v1.9.3\layer.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Styles\Public\bootstrap\css\bootstrap-tags.min.css.gzip" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Resources\Styles\Public\bootstrap\css\multiselect.min.css.gzip" />
+    <Content Include="Resources\Styles\Public\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Resources\Styles\Public\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Resources\Styles\Public\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Resources\Styles\Public\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InterfaceTest\LogindataList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\interfacedata\logindata.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InterfaceTest\EditLoginData.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Navigation\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Styles\Navigation\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Resources\Styles\Navigation\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Resources\Styles\Navigation\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Resources\Styles\Navigation\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Resources\Styles\Navigation\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Resources\Styles\Navigation\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Resources\Styles\Navigation\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Resources\Styles\Navigation\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InterfaceTest\EditPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\favvv.pubxml" />
+    <Content Include="Views\Navigation\BaseIndex.cshtml" />
+    <Content Include="Resources\interfacedata\InterFaceList.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49975</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49975/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

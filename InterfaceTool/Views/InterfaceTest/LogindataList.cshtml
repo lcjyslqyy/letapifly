@@ -1,0 +1,75 @@
+﻿@using InterfaceTool.Common;
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    @StylesLoad.Render(new string[] { StylesLoad.Bootstrap, StylesLoad.Common })
+    <title>用户列表</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="align_mb">
+                    <a href="/InterfaceTest/EditLoginData" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>&nbsp;新增用户</a>
+                </div>
+                <table id="grid-data" class="table table-condensed table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th data-column-id="userid" data-visible="false" data-identifier="true">userid</th>
+                            <th data-column-id="userName">姓名</th>
+                            <th data-column-id="logincode">登录帐号</th>
+                            <th data-column-id="usertype" data-formatter="usertype">类型</th>
+                            <th data-column-id="commands" data-formatter="commands" data-cssclass="table-commands">操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    @ScriptsLoad.Render(new string[] { ScriptsLoad.Jquery, ScriptsLoad.Bootstrap, ScriptsLoad.JqueryBootgrid_1_2_0, ScriptsLoad.Layers })
+    <script>
+        $(function () {
+            var grid = $("#grid-data").bootgrid({
+                ajax: true,
+                url: "/Method/Login_DataPage/",
+                rowCount:-1,
+                formatters: {
+                    "usertype": function (column, row) {
+                        if (row.usertype == 0) {
+                            return "超管";
+                        }
+                        else if (row.usertype == 1) {
+                            return "接口管理";
+                        }
+                        else if (row.usertype == 2) {
+                            return "安卓开发";
+                        }
+                        else if (row.usertype == 3) {
+                            return "IOS开发";
+                        }
+                    },                  
+                    "commands": function (column, row) {
+                        var btns = "";
+                        btns += '<a href="/InterfaceTest/EditLoginData/' + row.userid + '" class="edit"  title="编辑信息"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;';//
+                        btns += '<a href="javascript:;" class="control" data-id="' + row.userid + '"  title="操作用户"><span class="glyphicon glyphicon-eye-open"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;';
+                        btns += '<a href="javascript:;" class="delete" data-id="' + row.userid + '"  title="删除用户信息"><span class="glyphicon glyphicon-minus"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;';
+                        return btns;
+                    }
+                }
+            }).on("loaded.rs.jquery.bootgrid", function () {
+                /* Executes after data is loaded and rendered */
+                grid.find(".control").on("click", function (e) {
+                    var recordid = $(this).data("id");
+
+                }).end().find(".delete").on("click", function (e) {
+                    var recordid = $(this).data("id");
+
+                }).end()
+            });
+
+        })
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,15 @@
+﻿body {
+    color: #666;
+    background-color: transparent;
+    font: 12px/22px '微软雅黑',arial,'Hiragino Sans GB','Microsoft Yahei';
+    padding-top: 10px;
+}
+
+.align_mb {
+    margin-bottom: -49px;
+    position: relative;
+}
+.align_mb a, .align_mb button {
+  position: relative;
+    z-index: 100;
+}

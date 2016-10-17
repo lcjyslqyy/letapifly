@@ -1,0 +1,139 @@
+﻿@using InterfaceTool.Common;
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>上传接口</title>
+    @StylesLoad.Render(new string[] { StylesLoad.Bootstrap })
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-9 col-xs-12">
+                <form id="form" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">上传接口的参数xml</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            @*<a id="upload_img" href="javascript:void(0)" class="uploadbtn" title="上传图片"><img id="img1" src="" /></a>*@
+                            <input type="file" accept=".config,.xml" id="upload_xml" />
+                            <input type="hidden" id="xml_base64" name="xml_base64" class="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">接口Key</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <input type="text" id="InterfaceName" maxlength="50" class="form-control required" name="InterfaceName" />
+                            <span class="help-block" style="color:red">注意保证key值与上传的xml的文档的主node一致.</span>
+                            <span class="help-block">注意需要保证key值唯一性,若原来有则会替换掉这个key</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">测试接口的Url</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <input type="text" id="InterfaceUrl" maxlength="2000" class="form-control required" name="InterfaceUrl" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">接口的名称</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <input type="text" id="chName" maxlength="2000" class="form-control required" name="chName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">接口的描述</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <input type="text" id="InterfaceDes" maxlength="2000" class="form-control required" name="InterfaceDes" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">接口返回参数说明</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <textarea id="InterfaceReDes" class="form-control" rows="5" cols="20" name="InterfaceReDes"></textarea>                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-3 col-md-2"></div>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <button class="btn btn-primary">确定</button>
+                            <a class="btn btn-primary" href="/InterfaceTest/Index/">跳转测试url页面</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @ScriptsLoad.Render(new string[] { ScriptsLoad.Jquery, ScriptsLoad.Bootstrap, ScriptsLoad.jQueryValidator, ScriptsLoad.BootstrapMultiselect, ScriptsLoad.Layers, ScriptsLoad.SerializeForms })
+    <script>
+        var xmlname = "";
+        $(function () {
+            $("#upload_xml").on("change", function () {
+                var file = $(this).prop("files")[0];
+                console.log(file);
+                var filename = file.name;
+                xmlname = filename.replace(".xml", "")
+                console.log(xmlname);
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (e) {
+                    var dataURL = e.target.result;
+                    $("#xml_base64").val(dataURL);
+                }
+            })
+            $("#form").validate({
+                submitHandler: function (form) {
+                   $.ajax({
+                        type: 'post',
+                        dataType: "json",
+                        data: $(form).serializeArray(),
+                        url: "/Method/Comfird_FileExist",
+                        success: function (json) {
+                            var indexload = layer.load();
+                            if (json.success) {
+                                if (!json.isexist) {
+                                    layer.close(indexload);
+                                    $.ajax({
+                                        type: 'post',
+                                        dataType: "json",
+                                        data: $(form).serializeArray(),
+                                        url: "/Method/Save_InterfaceData",
+                                        success: function (d) {
+                                            layer.close(indexload);
+                                            layer.msg(d.msg, { icon: d.success ? 1 : 2 });
+                                            //if (d.success) {
+                                            //    setTimeout(function () { location.reload(); }, 1000);
+                                            //}
+                                        }
+                                    })
+                                }
+                                else {
+                                    layer.confirm('已经存在,这个接口的xml文档,是否确定将原文档替换?', { icon: 3, title: '替换提示' }, function (index) {
+                                        layer.close(index);
+                                        $.ajax({
+                                            type: 'post',
+                                            dataType: "json",
+                                            data: $(form).serializeArray(),
+                                            url: "/Method/Save_InterfaceData",
+                                            success: function (d) {
+                                                layer.close(indexload);
+                                                layer.msg(d.msg, { icon: d.success ? 1 : 2 });
+                                                //if (d.success) {
+                                                //    setTimeout(function () { location.reload(); }, 1000);
+                                                //}
+                                            }
+                                        })
+                                    });
+                                }
+                            }
+                            else{
+                                layer.msg(json.msg, { icon: json.success ? 1 : 2 });
+                                layer.close(indexload);
+                            }
+
+                        },
+                    });
+                }
+            });
+
+        })
+    </script>
+</body>
+</html>

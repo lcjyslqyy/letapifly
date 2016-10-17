@@ -1,0 +1,9 @@
+﻿{"menulist":[{"usertype":"0","controlurl":"/InterfaceTest/EditPassword/","navigationname":"修改密码","icon":"icon-settings"},
+{"usertype":"0","controlurl":"/InterfaceTest/LogindataList/","navigationname":"帐号管理","icon":"icon-users"},
+{"usertype":"0","controlurl":"/InterfaceTest/UploadInterfaceXml/","navigationname":"接口更新或上传","icon":"icon-pencil"},
+{"usertype":"0","controlurl":"/InterfaceTest/Index/","navigationname":"测试接口","icon":"icon-wrench"},
+{"usertype":"1","controlurl":"/InterfaceTest/EditPassword/","navigationname":"修改密码","icon":"icon-settings"},
+{"usertype":"1","controlurl":"/InterfaceTest/UploadInterfaceXml/","navigationname":"接口更新或上传","icon":""},
+{"usertype":"1","controlurl":"/InterfaceTest/Index/","navigationname":"测试接口","icon":"icon-wrench"},
+{"usertype":"2","controlurl":"/InterfaceTest/EditPassword/","navigationname":"修改密码","icon":"icon-settings"},
+{"usertype":"2","controlurl":"/InterfaceTest/Index/","navigationname":"测试接口","icon":"icon-wrench"}]}

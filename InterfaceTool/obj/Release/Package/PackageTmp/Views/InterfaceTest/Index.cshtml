@@ -1,0 +1,326 @@
+﻿@using InterfaceTool.Common;
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>测试接口</title>
+    @StylesLoad.Render(new string[] { StylesLoad.Bootstrap,  StylesLoad.BootstrapMultiselect })
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row">
+            <form id="form1" class="form-horizontal">
+                <div class="col-lg-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">选择测试的接口</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <select id="select_interface" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">测试接口的Url</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <input type="text" id="InterfaceUrl" maxlength="2000" class="form-control" name="InterfaceUrl" value="" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">接口描述</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <input type="text" id="InterfaceDes" maxlength="2000" class="form-control" name="InterfaceDes" value="" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">接口返回参数说明</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <textarea id="InterfaceReDes" class="form-control" rows="5" cols="20" name="InterfaceReDes" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <form id="form" class="form-horizontal">
+                <div class="col-lg-12 col-xs-12">
+                    <div id="Test_Interface">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">Url替换字符串</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <input type="text" id="urlreplacedata" maxlength="2000" class="form-control" name="urlreplacedata" value=""/>
+                            <span class="help-block">替换url的字符串,例子:{access_token}=CCCCC&{next_openid}=BBBB</span>
+                            <span class="help-block">此时会将url中的{access_token}替换成CCCCC....参数间用&隔开,赋值用=</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-3 col-md-2"></div>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <button class="btn btn-primary" id="cofirmd_test">确定</button>
+                            <a class="btn btn-primary" href="/InterfaceTest/UploadInterfaceXml/">跳转上传接口页面</a>
+                            <a class="btn btn-primary" href="javascript:;" id="create_net">生成.net的model</a>
+                            <a class="btn btn-primary" href="javascript:;">生成安卓的model</a>
+                            <a class="btn btn-primary" href="javascript:;">生成IOS的model</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <form id="form2" class="form-horizontal">
+                <div class="row">
+                    <div class="col-lg-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 col-sm-3 col-md-2 control-label">测试返回的json字符串</label>
+                            <div class="col-xs-8 col-sm-9 col-md-7">
+                                <textarea id="jsonresult" class="form-control" rows="15" cols="20" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 col-sm-3 col-md-2 control-label">发送的json</label>
+                            <div class="col-xs-8 col-sm-9 col-md-7">
+                                <textarea id="jsonpost" class="form-control" rows="15" cols="20" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="col-xs-4 col-sm-3 col-md-2 control-label">生成的代码</label>
+                        <div class="col-xs-8 col-sm-9 col-md-7">
+                            <textarea id="createcode" class="form-control" rows="20" cols="20" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    @ScriptsLoad.Render(new string[] { ScriptsLoad.Jquery, ScriptsLoad.Bootstrap, ScriptsLoad.BootstrapMultiselect, ScriptsLoad.jQueryValidator, ScriptsLoad.Layers,  ScriptsLoad.JqueryTmpl, ScriptsLoad.SerializeForms })
+    <script type="text/x-jquery-tmpl" id="nodes-groname-tmpl">
+        <div class="form-group">
+            <label class="col-xs-4 col-sm-3 col-md-2 control-label">${name}:</label>
+            <div class="col-xs-8 col-sm-9 col-md-7">
+                <input type="text" maxlength="150" class="form-control" name="${name}" value="${value}" />
+                <span class="help-block">${des}</span>
+            </div>
+        </div>
+    </script>
+    <script>
+            $(function () {
+                $("#select_interface").SetMultiselect({
+                    url: "/Method/Get_InterfaceTestList", filter: true, defselectvalue: "", text: "selecName", value: "InterfaceName", buttonWidth: 900,
+                });
+                $("#select_interface").on("change", function () {
+                    var selecvalue = $(this).val();
+                    if ($(this).val()) {
+                        $.ajax({
+                            type: 'post',
+                            dataType: "json",
+                            data: { InterfaceName: selecvalue },
+                            url: "/Method/Get_InterfaceDataModel",
+                            success: function (data) {
+                                if (data.success) {
+                                    SerializeForms.form.deserialize($("#form1"), data.datamodel);
+                                    $.ajax({
+                                        type: 'post',
+                                        dataType: "json",
+                                        data: { InterfaceName: selecvalue },
+                                        url: "/Method/Get_InterfaceModel",
+                                        success: function (json) {
+                                            $("#Test_Interface").html("");
+                                            $('#nodes-groname-tmpl').tmpl(json).appendTo("#Test_Interface");
+                                            //$('#Test_Interface').html($.tmpl("#nodes-groname-tmpl", json));
+                                        }
+                                    })
+                                }
+                                else {
+                                    layer.msg(data.msg, { icon: data.success ? 1 : 2, time: 3000 });
+                                }
+                            }
+                        })
+
+
+                    }
+                })
+                $("#form").validate({
+                    submitHandler: function (form) {
+                        console.log($(form).serializeArray())
+                        console.log(JSON.stringify($(form).serializeArray()))
+                        if (!$("#InterfaceUrl").val()) {
+                            layer.msg("请选择一个测试接口",{icon:2})
+                            return;
+                        }
+                        $.ajax({
+                            type: 'post',
+                            dataType: "json",
+                            data: { postdata: JSON.stringify($(form).serializeObject()), testurl: $("#InterfaceUrl").val(), urlreplacedata: $("#urlreplacedata").val() },
+                            url: "/Method/Interface_ComfirdTest",
+                            success: function (json) {
+                                if (json.success == false) {
+                                    layer.msg(json.msg, { icon: json.success ? 1 : 2 });
+                                }
+                                else {
+                                    $("#jsonresult").val(json);
+                                    $("#jsonpost").val(JSON.stringify($(form).serializeObject()));
+                                }
+                               
+                            }
+                        })
+                    }
+                })
+                $("#create_net").on("click", function () {
+
+                    $.ajax({
+                        type: 'post',
+                        dataType: "json",
+                        data: { InterfaceName: $("#select_interface").val() },
+                        url: "/Method/Create_Code",
+                        success: function (json) {
+                            $("#createcode").val(json);
+                        }
+                    })
+                })
+
+                $.fn.serializeObject = function () {
+                    var o = {};
+                    var a = this.serializeArray();
+                    $.each(a, function () {
+                        if (o[this.name]) {
+                            if (!o[this.name].push) {
+                                o[this.name] = [o[this.name]];
+                            }
+                            o[this.name].push(this.value || '');
+                        } else {
+                            o[this.name] = this.value || '';
+                        }
+                    });
+                    return o;
+                }
+            })
+
+    </script>
+    <script>
+        (function ($) {
+            //初始化下拉选择方法(包括多选,单选)
+
+            $.fn.SetMultiselect = function () {
+
+                var methods = {
+                    init: function (option) {
+
+                        return this.each(function () {
+                            var $this = $(this);
+                            var opts = $.extend({}, $.fn.SetMultiselect.defaults, option);
+
+                            $this.empty();
+                            $this.data(opts);
+
+                            if (opts.source != undefined && opts.source != null) {
+                                methods.bindoption($this, opts.source, opts);
+                                methods.setmultiselect($this, opts);
+                            }
+                            else {
+                                methods.ajaxload($this, opts, function () {
+                                    methods.setmultiselect($this, opts);
+                                })
+                            }
+                        });
+                    },
+                    bindoption: function ($select, data, opts) {
+                        if (!opts.nodefselect)
+                            $select.append('<option value="' + (opts.defselectvalue == null ? "0" : opts.defselectvalue) + '">' + (opts.noselect == null ? "请选择" : opts.noselect) + '</option>');
+                        $.each(data, function (i, e) {
+                            $select.append('<option value="' + e[opts.value] + '">' + e[opts.text] + '</option>');
+                            if (opts.defvalue) {
+                                $select.val(opts.defvalue);
+                            }
+                        })
+                    },
+                    reload: function (data) {
+                        return this.each(function () {
+                            var that = $(this);
+
+                            that.empty();
+                            var opts = $.extend({}, that.data(), data);
+
+
+                            methods.ajaxload(that, opts, function () {
+                                that.multiselect('rebuild');
+                            });
+                        })
+                    },
+                    ajaxload: function (select, opts, func) {
+                        $.ajax({
+                            type: "get",
+                            dataType: "json",
+                            data: opts.data,
+                            url: opts.url,
+                            success: function (data) {
+                                methods.bindoption(select, data, opts);
+                                if (func && typeof func == "function") {
+                                    func();
+                                }
+                            }
+                        });
+                    },
+                    setmultiselect: function (select, opts) {
+                        //console.log(select);
+                        select.multiselect({
+                            //nonSelectedText: opts.noselect,
+                            buttonText: function (options, select) {
+                                if (options.length === 0) {
+                                    return opts.noselect;
+                                }
+                                else if (options.length > opts.displayitem) {
+                                    return "选择了" + options.length + "项";
+                                }
+                                else {
+                                    var labels = [];
+                                    options.each(function () {
+                                        var _t = $(this)
+                                        if (_t.attr('label') !== undefined) {
+                                            labels.push(_t.attr('label'));
+                                        }
+                                        else {
+                                            labels.push(_t.html());
+                                        }
+                                    });
+                                    return labels.join(', ') + '';
+                                }
+                            },
+                            includeSelectAllOption: opts.selectall,
+                            selectAllText: "全选",
+                            enableFiltering: opts.filter
+                        });
+                    }
+                }
+
+                var method = arguments[0];
+                if (methods[method]) {
+                    method = methods[method];
+                    arguments = Array.prototype.slice.call(arguments, 1);
+                } else if (typeof method === "object" || !method) {
+                    method = methods.init;
+                } else {
+                    console.error("找不到方法:" + method);
+                    return this;
+                }
+
+                return method.apply(this, arguments);
+            }
+
+            $.fn.SetMultiselect.defaults = {
+                value: "value",
+                text: "text",
+                noselect: "请选择",//多才用这个
+                allselect: "全选",
+                displayitem: 3,
+                selectall: false,
+                filter: false,
+                nodefselect: false,
+            };
+        })(jQuery);
+    </script>
+</body>
+</html>

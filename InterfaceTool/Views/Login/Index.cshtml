@@ -1,0 +1,258 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>Login</title>
+    <!--[if IE 6]>
+    <script type="text/javascript" src="js/DD_belatedPNG.js" ></script>
+    <script type="text/javascript">
+    DD_belatedPNG.fix('div,a,span,ul,li,p,b,i,em,img,h2,h3,input,textarea,strong');
+    </script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <noscript>
+         <style>.html5-wrappers{display:none!important;}</style>
+         <div class="ie-noscript-warning">您的浏览器禁用了脚本，请<a href="">查看这里</a>来启用脚本!或者<a href="/?noscript=1">继续访问</a>.
+         </div>
+    </noscript>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+    <style>
+        body, div, address, blockquote, iframe, em, i, ul, ol, dl, dt, dd, li, dl, h1, h2, h3, h4, pre, table, caption, th, td, form, legend, fieldset, input, button, select, textarea, p {
+            margin: 0;
+            padding: 0;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+        }
+
+        ol, ul, li {
+            list-style: none;
+        }
+
+        img {
+            border: 0;
+            vertical-align: middle;
+        }
+
+        body {
+            color: #000000;
+            background: #ebeeef;
+            font: 12px/22px arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti;
+        }
+
+        html {
+            _background: url(about:black) no-repeat fixed;
+        }
+
+        a {
+            color: #9f0217;
+            text-decoration: none;
+        }
+
+            a:hover {
+                color: #BA2636;
+                text-decoration: none;
+            }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .clear {
+            clear: both;
+            height: 0;
+            line-height: 0;
+            font-size: 0;
+            display: block;
+            overflow: hidden;
+        }
+
+        .clearfix:after, .clearfix:before {
+            clear: both;
+            content: ".";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            font-size: 0;
+        }
+
+        .clearfix {
+            display: block;
+            zoom: 1;
+        }
+
+        * + html .clearfix {
+            min-height: 1%;
+        }
+
+        /* html5兼容IE浏览器 */
+        header, section, footer, aside, nav, main, article, figure {
+            display: block;
+        }
+
+        .wrap {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .wx-games-wrapper {
+            max-width: 1024px;
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+
+        .bodybg {
+            background-image: url(/Resources/images/bg.jpg);
+            background-repeat: no-repeat;
+            background-position: center 0;
+        }
+
+        .logoimg {
+            padding: 60px 0 40px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+            .logoimg, .logoimg img {
+                width: 208px;
+                height: 28px;
+            }
+
+        .main-center {
+            width: 430px;
+            height: 400px;
+            margin: 274px auto 0;
+        }
+
+        .inputbox {
+            width: 340px;
+            position: relative;
+            margin: 50px auto 0;
+            font-size: 18px;
+        }
+
+            .inputbox dt, .inputbox dd, .inputbox input {
+                height: 30px;
+                line-height: 30px;
+            }
+
+            .inputbox dt {
+                float: left;
+                clear: left;
+                font-size: inherit;
+                width: 100px;
+            }
+
+            .inputbox dd {
+                margin: 0 0 25px 100px;
+                font-size: inherit;
+            }
+
+            .inputbox input {
+                width: 100%;
+                background-color: #eeeeee;
+                border: #c8c8c8 1px solid;
+            }
+
+        .submitbtn {
+            width: 122px;
+            height: 40px;
+            background: url(/Resources/images/btn.png) center no-repeat;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body class="bodybg">
+    <div class="main-center">
+        <div class="logoimg"><img src="/Resources/images/logologin.png" alt=""></div>
+        <dl class="inputbox clearfix">
+            <dt>登录帐号：</dt>
+            <dd><input type="text" value="" id="account" /></dd>
+            <dt>密码：</dt>
+            <dd><input type="password" value="" id="password" /></dd>
+            <dt></dt>
+            <dd>
+                <a href="javascript:;" class="submitbtn" id="btnLogin"></a>
+            </dd>
+        </dl>
+    </div>
+    <script type="text/javascript" src="/Resources/Scripts/Common/jquery/v1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/Resources/Scripts/Common/layer/v1.9.3/layer.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var btnLogin = $("#btnLogin");
+            btnLogin.click(function () { checklogin(); });
+            document.body.addEventListener('keydown', function (e) {
+                if (e.keyCode == 13) {
+                    checklogin();
+                }
+            });
+        });
+
+        function checklogin() {
+            var tbUserUid = $("#account");
+            var tbPassword = $("#password");
+
+            if ($.trim(tbUserUid.val()).length == 0) {
+                window.alert("请您输入登录账号！");
+                tbUserUid.focus();
+                return false;
+            }
+            if ($.trim(tbPassword.val()).length == 0) {
+                window.alert("请您输入登录密码！");
+                tbPassword.focus();
+                return false;
+            }
+            $.ajax({
+                type: 'post',
+                dataType: "json",
+                data: { user: $.trim(tbUserUid.val()), Password: $.trim(tbPassword.val()) },
+                url: "/Login/Login",
+                success: function (json) {
+                    console.log(json);
+                    if (json) {
+                        if (json.success) {
+                            if (json.url) {
+                                window.location = json.url;
+                            }
+                        }
+                        else {
+                            layer.msg(json.msg + "请修改后再登录!", { icon: 1 });
+                            return false;
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
